@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap');
+
+/* ===== CSS Reset & Global Styles ===== */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Color Palette */
+  --cream: #FFF8F0;
+  --cream-dark: #F5EDE0;
+  --pink-light: #FFE4EC;
+  --pink: #FFB8D0;
+  --pink-medium: #FF9EBC;
+  --pink-dark: #E8749C;
+  --pink-curtain: #F4A6C0;
+  --brown-light: #C4A882;
+  --brown: #8B7355;
+  --brown-dark: #6B5842;
+  --text-dark: #4A3728;
+  --text-medium: #6B5842;
+  --text-light: #9B8B78;
+  --border-crayon: #D4B896;
+  --white: #FFFFFF;
+
+  /* Typography */
+  --font-handwritten: 'Gaegu', cursive;
+  --font-gungsuh: 'Gungsuh', '궁서', 'Nanum Myeongjo', serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 1.875rem;
+  --font-size-3xl: 2.25rem;
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+
+  /* Border Radius */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 30px;
+  --radius-full: 50%;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-handwritten);
+  background-color: var(--cream);
+  color: var(--text-dark);
+  min-height: 100vh;
+  overflow-x: hidden;
+  /* Paper texture using repeating gradients */
+  background-image:
+    repeating-linear-gradient(0deg,
+      transparent,
+      transparent 28px,
+      rgba(200, 180, 160, 0.08) 28px,
+      rgba(200, 180, 160, 0.08) 29px),
+    linear-gradient(135deg,
+      rgba(255, 248, 240, 1) 0%,
+      rgba(252, 245, 235, 1) 50%,
+      rgba(255, 248, 240, 1) 100%);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--cream-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--pink);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--pink-medium);
+}
+
+/* Selection color */
+::selection {
+  background-color: var(--pink-light);
+  color: var(--text-dark);
+}
+
+/* Remove default focus outline and add custom */
+:focus-visible {
+  outline: 2px dashed var(--pink-medium);
+  outline-offset: 2px;
+}
+
+/* Animations */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes wiggle {
+
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(-2deg);
+  }
+
+  75% {
+    transform: rotate(2deg);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes pulse-soft {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.02);
+  }
+}

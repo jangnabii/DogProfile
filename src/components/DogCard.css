@@ -1,0 +1,300 @@
+/* ===== Dog Registration Card ===== */
+.card-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.dog-card {
+  position: relative;
+  width: 480px;
+  height: 330px;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow:
+    0 4px 20px rgba(180, 160, 200, 0.25),
+    0 1px 4px rgba(0, 0, 0, 0.08),
+    inset 0 0 60px rgba(255, 255, 255, 0.15);
+  /* Use profilecard.png as the background image */
+  background: url('/profilecard.png') no-repeat center / 117%;
+  font-family: var(--font-gungsuh);
+}
+
+
+
+.card-content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Card title */
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  position: relative;
+  left: -50px;
+  top: 10px;
+}
+
+.card-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #2A2030;
+  letter-spacing: 5px;
+}
+
+/* Card body layout */
+.card-body {
+  display: flex;
+  flex: 1;
+  gap: 16px;
+}
+
+/* Left: text info */
+.card-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  padding-left: 15px;
+  padding-right: 75px;
+  min-width: 0;
+}
+
+.card-info-detail {
+  font-size: 15px;
+  font-weight: 700;
+  color: #332244;
+  line-height: 1.4;
+}
+
+.card-name {
+  font-size: 19px;
+  font-weight: 800;
+  color: #221133;
+  line-height: 1.3;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Right: photo */
+.card-photo-area {
+  width: 130px;
+  height: 171px;
+  margin-top: -45px;
+  margin-left: -70px;
+  position: relative;
+  left: -3px;
+  flex-shrink: 0;
+  border: 3px solid rgba(100, 90, 130, 0.3);
+  border-radius: 4px;
+  overflow: hidden;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    inset 0 0 0 2px rgba(150, 140, 170, 0.15),
+    0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.card-photo-area img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+
+/* Bottom area: stamp + issue info */
+.card-footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin-top: auto;
+  padding-top: 6px;
+  position: relative;
+}
+
+.card-issue-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: center;
+}
+
+.card-issue-date {
+  font-size: 14px;
+  font-weight: 400;
+  color: #4A4050;
+}
+
+.card-issue-org {
+  font-size: 14px;
+  font-weight: 700;
+  color: #2A2030;
+}
+
+/* Paw stamp */
+.card-stamp {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  border: 2.5px solid #A03040;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 15px;
+  bottom: -3px;
+  transform: rotate(8deg);
+  opacity: 0.85;
+}
+
+.card-stamp-text-top {
+  font-size: 7.5px;
+  font-weight: 700;
+  color: #A03040;
+  letter-spacing: 0.5px;
+  position: absolute;
+  top: 8px;
+  /* Curved text simulation */
+}
+
+.card-stamp-paw {
+  font-size: 24px;
+  margin-top: 2px;
+}
+
+.card-stamp-text-bottom {
+  font-size: 8px;
+  font-weight: 700;
+  color: #A03040;
+  position: absolute;
+  bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+/* Decorative gold elements */
+.card-deco-bird {
+  position: absolute;
+  top: 58px;
+  left: 28px;
+  font-size: 10px;
+  color: #C5A44A;
+  opacity: 0.6;
+  letter-spacing: 8px;
+}
+
+@media (max-width: 768px) {
+  .dog-card {
+    width: 340px;
+    height: 234px;
+    border-radius: 10px;
+  }
+
+  .card-content {
+    padding: 17px 20px;
+  }
+
+  .card-header {
+    padding-left: 0;
+    justify-content: center;
+    margin-bottom: 10px;
+    position: relative;
+    left: -35px;
+    top: 7px;
+    transform: none;
+  }
+
+  .card-title {
+    font-size: 20px;
+    letter-spacing: 3px;
+  }
+
+  .card-info-detail {
+    font-size: 11px;
+    line-height: 1.3;
+  }
+
+  .card-info {
+    padding-left: 11px;
+    padding-right: 53px;
+  }
+
+  .card-name {
+    font-size: 13px;
+  }
+
+  .card-photo-area {
+    width: 92px;
+    height: 121px;
+    margin-top: -32px;
+    margin-left: -50px;
+    position: relative;
+    left: -1px;
+    flex-shrink: 0;
+    border: 2px solid rgba(100, 90, 130, 0.3);
+    border-radius: 4px;
+    overflow: hidden;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card-photo-area img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .card-stamp {
+    width: 50px;
+    height: 50px;
+    border-width: 2px;
+    position: absolute;
+    right: 10px;
+    bottom: -3px;
+  }
+
+  .card-stamp-text-top {
+    font-size: 5px;
+    top: 5px;
+  }
+
+  .card-stamp-paw {
+    font-size: 16px;
+  }
+
+  .card-stamp-text-bottom {
+    font-size: 5px;
+    bottom: 5px;
+  }
+
+  .card-issue-date {
+    font-size: 10px;
+  }
+
+  .card-issue-org {
+    font-size: 10px;
+    font-weight: 700;
+  }
+
+  .card-deco-bird {
+    font-size: 8px;
+    top: 42px;
+    left: 18px;
+  }
+}
