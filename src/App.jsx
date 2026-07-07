@@ -3,6 +3,8 @@ import html2canvas from 'html2canvas';
 import DogCard from './components/DogCard';
 import InputForm from './components/InputForm';
 import DownloadButton from './components/DownloadButton';
+import { db } from './firebase';
+import { collection, addDoc } from 'firebase/firestore';
 import './App.css';
 
 const INITIAL_DOG_INFO = {
@@ -34,13 +36,52 @@ export default function App() {
         logging: false,
       });
 
-      const link = document.createElement('a');
+      const dataUrl = canvas.toDataURL('image/png');
       const fileName = dogInfo.nameKo
         ? `강아지등록증_${dogInfo.nameKo}.png`
         : '강아지등록증.png';
-      link.download = fileName;
-      link.href = canvas.toDataURL('image/png');
-      link.click();
+
+      // 모바일 환경인지 확인
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      let shared = false;
+
+      // 모바일이고 공유 기능(이미지 파일 포함)을 지원하는 경우 Share API 호출
+      if (isMobile && navigator.canShare) {
+        try {
+          const blob = await (await fetch(dataUrl)).blob();
+          const file = new File([blob], fileName, { type: 'image/png' });
+          if (navigator.canShare({ files: [file] })) {
+            await navigator.share({
+              files: [file],
+              title: '강아지 등록증',
+            });
+            shared = true;
+          }
+        } catch (shareErr) {
+          console.error('Share API failed:', shareErr);
+        }
+      }
+
+      // 데스크탑이거나 Share API를 지원/성공하지 않은 경우 기존 다운로드 방식 사용
+      if (!shared) {
+        const link = document.createElement('a');
+        link.download = fileName;
+        link.href = dataUrl;
+        link.click();
+      }
+
+      // 다운로드가 성공적으로 시작된 후, 백그라운드에서 Firestore에 발급 기록 저장
+      // (await를 쓰지 않아 DB 응답 지연이 다운로드를 막지 않게 함)
+      const newRecord = {
+        ...dogInfo,
+        createdAt: new Date().toISOString(),
+      };
+      delete newRecord.photo; // 용량이 큰 사진 데이터는 제외
+      
+      addDoc(collection(db, "dogs"), newRecord).catch((e) => {
+        console.error("Error adding document: ", e);
+      });
+
     } catch (err) {
       console.error('다운로드 실패:', err);
       alert('이미지 다운로드에 실패했습니다. 다시 시도해주세요.');
